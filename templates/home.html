@@ -1,8 +1,14 @@
 {% extends "base2col.html" %}
-{% block pagetitle %}Welcome to the network! Login or Register to get started{% endblock %}
+{% block pagetitle %}
+    {% if user.is_authenticated %}
+    Welcome {{ user.username }}
+    {% else %}
+    Welcome to the network! Login or Register to get started
+    {% endif %}
+{% endblock %}
 {% block contentcol1 %}
     {% if user.is_authenticated %}
-        you are logged in: <a href="{% url 'django.contrib.auth.views.logout' %}">Log out</a>
+
     {% else %}
         <span class="sectionheader">Member Login:</span>
         <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
@@ -10,6 +16,7 @@
             {{ login_form.as_table }}
             <tr><td colspan="2" style="text-align: right"><input type="submit" value="Sign in"></td></tr>
         </table>
+            <input type="hidden" name="next" value="{% url 'seednetwork.views.home' %}" />
 
         </form>
     {% endif %}

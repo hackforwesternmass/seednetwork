@@ -14,3 +14,20 @@ table.form th {
 .sectionheader {
     font-size: 200%;
 }
+
+.nav {
+    color: white;
+    vertical-align: middle;
+    font-family: Arial;
+}
+
+.nav a:link {
+    color: white;
+    text-decoration: none;
+}
+.nav a:visited {
+    color: white;
+}
+.nav a:hover {
+    color: white;
+}
