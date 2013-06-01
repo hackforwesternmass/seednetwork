@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% block pagetitle %}Login as a Member{% endblock %}
 {% block content %}
 {% if user.is_authenticated %}
     {{ user.username }}
