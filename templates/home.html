@@ -1,0 +1,30 @@
+{% extends "base2col.html" %}
+{% block pagetitle %}Welcome to the network! Login or Register to get started{% endblock %}
+{% block contentcol1 %}
+    {% if user.is_authenticated %}
+        you are logged in: <a href="{% url 'django.contrib.auth.views.logout' %}">Log out</a>
+    {% else %}
+        <span class="sectionheader">Member Login:</span>
+        <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
+        <table>{% csrf_token %}
+            {{ login_form.as_table }}
+            <tr><td colspan="2" style="text-align: right"><input type="submit" value="Sign in"></td></tr>
+        </table>
+
+        </form>
+    {% endif %}
+{% endblock %}
+{% block contentcol2 %}
+    {% if user.is_authenticated %}
+
+    {% else %}
+        <span class="sectionheader">New member registration:</span>
+        <form method="post" action="{% url 'seednetwork.views_user.new_user' %}">
+        <table>{% csrf_token %}
+            {{ create_user_form.as_table }}
+            {{ member_info_form.as_table }}
+            <tr><td colspan="2" style="text-align: right"><input type="submit" value="Register"></td></tr>
+        </table>
+        </form>
+    {% endif %}
+{% endblock %}

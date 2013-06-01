@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Seed Library: Home{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        {{ user.username }}
+    {% else %}
+        <h3>Login</h3>
+        <form id="loginform" action="/login/" method="post">{% csrf_token %}
+            <p><strong>Username</strong><br/><input type="text" name="username" /><br/>
+                <strong>Password</strong><br/><input type="password" name="password" /><br/>
+                <input type="submit" name="login" value="login" /><br/>
+            </p>
+        </form>
+    {% endif %}
+{%endblock%}

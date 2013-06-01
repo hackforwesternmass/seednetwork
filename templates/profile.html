@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block pagetitle %}{{ user.username }} Member Profile{% endblock %}
+{% block content %}
+    {% if user.is_authenticated %}
+        <table>
+        <tr><th>Username:</th><td>{{ user.username }}</td></tr>
+        <tr><th>First name:</th><td>{{ user.first_name }}</td></tr>
+        <tr><th>Last name:</th><td>{{ user.last_name }}</td></tr>
+        <tr><th>e-mail:</th><td>{{ user.email }}</td></tr>
+        <tr><th>Phone:</th><td>{{ memberinfo.phone }} <em>({% if memberinfo.phone_is_public %}public{% else %}private{% endif %})</em></td></tr>
+        <tr><th>Town:</th><td>{{ memberinfo.town }}</td></tr>
+        <tr><th>Street Address:</th><td>{{ memberinfo.street_address }} <em>({% if memberinfo.street_address_is_public %}public{% else %}private{% endif %})</em></td></tr>
+        <tr><th>Mailing Address:</th><td>{{ memberinfo.mailing_address }} <em>({% if memberinfo.mailing_address_is_public %}public{% else %}private{% endif %})</em></td></tr>
+        <tr><th>About me:</th><td>{{ memberinfo.about_me }}</td></tr>
+        </table>
+        <a href="{% url 'seednetwork.views_user.edit_profile' %}">Edit</a>
+        <a href="{% url 'django.contrib.auth.views.logout' %}">Logout</a>
+
+    {% else %}
+    {% endif %}
+{% endblock %}
