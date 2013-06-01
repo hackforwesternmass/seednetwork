@@ -2,7 +2,7 @@
 {% block pagetitle %}{{ user.username }} Member Profile{% endblock %}
 {% block content %}
     {% if user.is_authenticated %}
-        <table>
+        <table class="form">
         <tr><th>Username:</th><td>{{ user.username }}</td></tr>
         <tr><th>First name:</th><td>{{ user.first_name }}</td></tr>
         <tr><th>Last name:</th><td>{{ user.last_name }}</td></tr>
