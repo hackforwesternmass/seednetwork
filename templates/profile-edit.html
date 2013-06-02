@@ -4,11 +4,11 @@
     {% if user.is_authenticated %}
         <form method="post" action=".">{% csrf_token %}
         <table>
-            <tr><td colspan="2"><a href="{% url 'seednetwork.views_user.profile' %}">Cancel</a></td></tr>
         {{ form.as_table }}
-            <tr><td colspan="2">
-            <input type="submit" value="Update" /></td></tr>
         </table>
+            </br>
+            <a href="{% url 'seednetwork.views_user.profile' %}">Cancel</a> |
+            <input type="submit" value="Update" />
         </form>
     {% else %}
     {% endif %}
