@@ -97,8 +97,8 @@ SECRET_KEY = os.environ['SEEDNETWORK_SECRETKEY']
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
+    'django.template.loaders.filesystem.Loader',
 #     'django.template.loaders.eggs.Loader',
 )
 
@@ -120,6 +120,8 @@ WSGI_APPLICATION = 'seednetwork.wsgi.application'
 TEMPLATE_DIRS = ()
 
 INSTALLED_APPS = (
+    'seedlibrary',
+    'seednetwork',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -130,8 +132,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
-    'seedlibrary',
-    'seednetwork',
+  
 )
 
 # A sample logging configuration. The only tangible logging
