@@ -1,4 +1,4 @@
-{% extends "base2col.html" %}
+{% extends "base.html" %}
 {% block pagetitle %}
     {% if user.is_authenticated %}
         Welcome to the virtual seed library
@@ -6,28 +6,32 @@
     Welcome to the network! Login or Register to get started
     {% endif %}
 {% endblock %}
-{% block contentcol1 %}
-    {% if user.is_authenticated %}
-    <p><a href="{% url 'seedlibrary.views.seed_create' %}">List a new seed</a></p>
-    <p><form  class="searchform" method="post" action="{% url 'seedlibrary.views_search.seed_search' %}">{% csrf_token %}
-        Search <input type="text" name="q"> <input type="submit" value="Search">
-    </form></p>
-    {% else %}
-        <span class="sectionheader">Member Login:</span>
-        <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
-        <table>{% csrf_token %}
-            {{ login_form.as_table }}
-            <tr><td colspan="2" style="text-align: right"><input type="submit" value="Sign in"></td></tr>
-        </table>
-            <input type="hidden" name="next" value="{% url 'seednetwork.views.home' %}" />
-        </form>
-        <a href="{% url 'django.contrib.auth.views.password_reset' %}">I forgot my password</a>
-    {% endif %}
-{% endblock %}
-{% block contentcol2 %}
-    {% if user.is_authenticated %}
+{% block content %}
 
+    {% if user.is_authenticated %}
+        <p>If you have a seed to list, visit the <a href="{% url 'seedlibrary.views.seed_create' %}">seed listing form</a>.</p>
+        <p><form  class="searchform" method="post" action="{% url 'seedlibrary.views_search.seed_search' %}">{% csrf_token %}
+            <input type="text" name="q"> <input type="submit" value="Search">
+        </form></p>
     {% else %}
+        <table>
+        <tr>
+        <td width="298" height="714" valign="top">
+
+            <span class="sectionheader">Member Login:</span>
+            <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
+            <table>{% csrf_token %}
+                {{ login_form.as_table }}
+                <tr><td colspan="2" style="text-align: right"><input type="submit" value="Sign in"></td></tr>
+            </table>
+                <input type="hidden" name="next" value="{% url 'seednetwork.views.home' %}" />
+            </form>
+            <a href="{% url 'django.contrib.auth.views.password_reset' %}">I forgot my password</a>
+
+        </td>
+        <td width="1">&nbsp;</td>
+        <td width="650" valign="top">
+
         <span class="sectionheader">New member registration:</span>
         <form method="post" action="{% url 'seednetwork.views_user.new_user' %}">
         <table>{% csrf_token %}
@@ -36,5 +40,9 @@
             <tr><td colspan="2" style="text-align: right"><input type="submit" value="Register"></td></tr>
         </table>
         </form>
+
+    </td>
+    </tr>
+        </table>
     {% endif %}
 {% endblock %}

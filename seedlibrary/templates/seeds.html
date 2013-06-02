@@ -4,7 +4,8 @@
 <p>You have listed {{ seed_list.count }} seed{{ seed_list.count|pluralize }}</p>
 {% if seed_list %}
     <table class="results">
-    <tr><th>Type</th>
+    <tr>
+        <th>Type</th>
         <th>Crop</th>
         <th>Variety</th>
         <th>Year</th>
@@ -13,7 +14,9 @@
         <th>Description</th>
         <th>Actions</th></tr>
     {% for seed in seed_list %}
-        <tr><td>{{ seed.seed_type }}</td>
+        <tr>
+
+        <td>{{ seed.seed_type }}</td>
         <td>{{ seed.crop_type }}</td>
         <td>{{ seed.seed_variety }}</td>
         <td>{{ seed.year }}</td>

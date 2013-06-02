@@ -74,6 +74,12 @@ table.results td, th{
     padding-right: 10px;
 }
 
-.searchform input>type=textarea {
-                       
+.searchform input[type=text] {
+    width: 200px;
+    font-size: 120%;
+}
+
+
+.searchform input[type=submit] {
+    font-size: 120%;
 }
