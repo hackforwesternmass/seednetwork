@@ -3,6 +3,9 @@ import os
 import dj_database_url
 
 DEBUG = False
+if 'SEEDNETWORK_DEBUG' in os.environ:
+	DEBUG = (os.environ['SEEDNETWORK_DEBUG'].startswith('T'))
+
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -61,7 +64,7 @@ MEDIA_URL = ''
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
 PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
-STATIC_ROOT = os.path.join(PROJECT_PATH, 'static')
+STATIC_ROOT = os.path.join(PROJECT_PATH, '../static')
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
