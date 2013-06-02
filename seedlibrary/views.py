@@ -8,7 +8,7 @@ from seedlibrary.models import Seed
 
 
 def home(request):
-	return render_to_response('home.html',
+	return render_to_response('seedlib-home.html',
 		{},
 		context_instance=RequestContext(request))
 

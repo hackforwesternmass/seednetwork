@@ -120,7 +120,7 @@ ROOT_URLCONF = 'seednetwork.urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'seednetwork.wsgi.application'
 
-TEMPLATE_DIRS = ('/Users/lou/project/seednetwork/templates',)
+TEMPLATE_DIRS = ()
 
 INSTALLED_APPS = (
     'django.contrib.auth',
