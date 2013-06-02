@@ -27,12 +27,22 @@ urlpatterns = patterns('',
 
     (r'^accounts/new-user/$', 'seednetwork.views_user.new_user'),
 
+
 	(r'^accounts/reset-password/$', 'django.contrib.auth.views.password_reset',
 		 {'template_name':'password_reset.html',
 		  'email_template_name':'password_reset_email.html'}),
 
 	(r'^accounts/reset-password/done/$', 'django.contrib.auth.views.password_reset_done',
 		 {'template_name':'password_reset_done.html'}),
+
+	(r'^accounts/reset-password-confirm/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+)/$',
+	 'django.contrib.auth.views.password_reset_confirm', {'template_name':'password_reset_confirm.html'}),
+
+	(r'^accounts/reset-password-complete/$', 'django.contrib.auth.views.password_reset_complete',
+		{'template_name':'password_reset_complete.html'}),
+
+
+
 
 	(r'^accounts/change-password/$', 'django.contrib.auth.views.password_change',
 		 {'template_name':'password_change.html'}),

@@ -16,5 +16,6 @@
 </table>
 <input type="hidden" name="next" value="{{ next }}" />
 </form>
+    <a href="{% url 'django.contrib.auth.views.password_reset' %}">I forgot my password</a>
 {% endif %}
 {% endblock %}

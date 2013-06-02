@@ -17,8 +17,8 @@
             <tr><td colspan="2" style="text-align: right"><input type="submit" value="Sign in"></td></tr>
         </table>
             <input type="hidden" name="next" value="{% url 'seednetwork.views.home' %}" />
-
         </form>
+        <a href="{% url 'django.contrib.auth.views.password_reset' %}">I forgot my password</a>
     {% endif %}
 {% endblock %}
 {% block contentcol2 %}

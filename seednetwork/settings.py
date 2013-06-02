@@ -5,7 +5,7 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-     ('Lou Franco', 'lfranco@greenwave-solutions.com'),
+     ('Seed Network Admin', os.environ['SEEDNETWORK_DEFAULT_FROM_EMAIL']),
 )
 
 MANAGERS = ADMINS
@@ -21,6 +21,13 @@ DATABASES = {
         'PORT': '',                      # Set to empty string for default.
     }
 }
+
+EMAIL_HOST = os.environ['SEEDNETWORK_EMAIL_HOST']
+EMAIL_HOST_USER = os.environ['SEEDNETWORK_EMAIL_HOST_USER']
+EMAIL_PORT=os.environ['SEEDNETWORK_EMAIL_PORT']
+EMAIL_HOST_PASSWORD = os.environ['SEEDNETWORK_EMAIL_HOST_PASSWORD']
+DEFAULT_FROM_EMAIL = os.environ['SEEDNETWORK_DEFAULT_FROM_EMAIL']
+EMAIL_USE_TLS = False
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
