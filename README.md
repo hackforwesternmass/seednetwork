@@ -5,6 +5,7 @@ The distributed seed library for the Hilltown Seed Saving Network
 This is a Django site. To make it easier to deploy without changing settings.py, use the following environment variables
 
 ```shell
+SEEDNETWORK_DB_ENGINE
 SEEDNETWORK_SECRETKEY
 SEEDNETWORK_DBUSER
 SEEDNETWORK_DBPWD

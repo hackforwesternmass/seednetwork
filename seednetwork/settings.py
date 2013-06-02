@@ -10,9 +10,13 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+ENGINE_ENV_VAR = 'django.db.backends.mysql'
+if os.environ.has_key('SEEDNETWORK_DB_ENGINE'):
+	ENGINE_ENV_VAR = os.environ['SEEDNETWORK_DB_ENGINE']
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'ENGINE': ENGINE_ENV_VAR, # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': os.environ['SEEDNETWORK_DBNAME'],
         # The following settings are not used with sqlite3:
         'USER': os.environ['SEEDNETWORK_DBUSER'],
