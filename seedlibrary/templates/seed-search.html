@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Seed Library: Search{% endblock %}
+{% block pagetitle %}{% endblock %}
+{% block content %}
+    {% if user.is_authenticated %}
+        <form  class="searchform" method="post" action="{% url 'seedlibrary.views_search.seed_search' %}">{% csrf_token %}
+            <input type="text" name="q" value="{{ q }}"> <input type="submit" value="Search">
+        </form>
+
+        {% if seed_list %}
+            <table class="results">
+                <tr><th>Member</th>
+                    <th>Type</th>
+                    <th>Crop</th>
+                    <th>Variety</th>
+                    <th>Year</th>
+                    <th>Origin</th>
+                    <th>Share</th>
+                    <th>Description</th>
+                    <th>Actions</th></tr>
+                {% for seed in seed_list %}
+                    <tr><td>{{ seed.user.username }}</td>
+                        <td>{{ seed.seed_type }}</td>
+                        <td>{{ seed.crop_type }}</td>
+                        <td>{{ seed.seed_variety }}</td>
+                        <td>{{ seed.year }}</td>
+                        <td>{{ seed.origin }}</td>
+                        <td>{{ seed.enough_to_share|yesno:"Yes,No" }}</td>
+                        <td>{{ seed.seed_description }} </td>
+                        <td>
+                            <a href="{% url 'seedlibrary.views.seed_edit' id=seed.id %}">Edit</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <p>No seeds are available.</p>
+        {% endif %}
+
+    {% endif %}
+{%endblock%}
