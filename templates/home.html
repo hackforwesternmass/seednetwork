@@ -1,14 +1,15 @@
 {% extends "base2col.html" %}
 {% block pagetitle %}
     {% if user.is_authenticated %}
-    Welcome {{ user.username }}
+        Welcome to the virtual seed library
     {% else %}
     Welcome to the network! Login or Register to get started
     {% endif %}
 {% endblock %}
 {% block contentcol1 %}
     {% if user.is_authenticated %}
-
+    <p><a href="{% url 'seedlibrary.views.seed_create' %}">List a new seed</a></p>
+    
     {% else %}
         <span class="sectionheader">Member Login:</span>
         <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
