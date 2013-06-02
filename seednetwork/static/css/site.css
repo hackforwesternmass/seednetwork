@@ -73,3 +73,7 @@ table.results td, th{
     padding-left: 10px;
     padding-right: 10px;
 }
+
+.searchform input>type=textarea {
+                       
+}

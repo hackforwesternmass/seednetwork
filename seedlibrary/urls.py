@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, include, url
 
-from seedlibrary import views
+from seedlibrary import views, views_search
 
 urlpatterns = patterns('',
    url(r'^$', 'seedlibrary.views.home', name='home'),
@@ -8,6 +8,8 @@ urlpatterns = patterns('',
    url(r'^seeds/create-confirm/$', 'seedlibrary.views.seed_create_confirm'),
    url(r'^seeds/$', 'seedlibrary.views.seeds'),
    url(r'^seeds/edit/(?P<id>[0-9]+)$', 'seedlibrary.views.seed_edit'),
+
+   url(r'^search/$', 'seedlibrary.views_search.seed_search'),
  
 )
 

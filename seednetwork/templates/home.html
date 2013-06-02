@@ -9,7 +9,9 @@
 {% block contentcol1 %}
     {% if user.is_authenticated %}
     <p><a href="{% url 'seedlibrary.views.seed_create' %}">List a new seed</a></p>
-    
+    <p><form  class="searchform" method="post" action="{% url 'seedlibrary.views_search.seed_search' %}">{% csrf_token %}
+        Search <input type="text" name="q"> <input type="submit" value="Search">
+    </form></p>
     {% else %}
         <span class="sectionheader">Member Login:</span>
         <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
