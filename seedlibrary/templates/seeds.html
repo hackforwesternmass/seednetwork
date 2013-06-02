@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block pagetitle %}{{ user.username}}'s Seeds{% endblock %}
 {% block content %}
+<p>You have listed {{ seed_list.count }} seed{{ seed_list.count|pluralize }}</p>
 {% if seed_list %}
     <table class="results">
     <tr><th>Type</th>
