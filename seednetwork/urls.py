@@ -1,4 +1,5 @@
 from django.conf.urls import patterns, include, url
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -51,3 +52,5 @@ urlpatterns = patterns('',
 	(r'^accounts/change-password/done/$', 'django.contrib.auth.views.password_change_done',
 		 {'template_name':'password_change_done.html'}),
 )
+
+urlpatterns += staticfiles_urlpatterns()
