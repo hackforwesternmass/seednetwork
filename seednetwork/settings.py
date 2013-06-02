@@ -10,9 +10,7 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-ENGINE_ENV_VAR = 'django.db.backends.mysql'
-if os.environ.has_key('SEEDNETWORK_DB_ENGINE'):
-	ENGINE_ENV_VAR = os.environ['SEEDNETWORK_DB_ENGINE']
+ENGINE_ENV_VAR = os.environ['SEEDNETWORK_DB_ENGINE']
 
 DATABASES = {
     'default': {
