@@ -20,8 +20,15 @@
                     <th>Description</th>
                     <th>Actions</th></tr>
                 {% for seed in seed_list %}
-                    <tr><td>{{ seed.user.username }}</td>
+                    <tr>
                     {% with seed.user.memberinfo_set.all|first as mi %}
+                        <td>
+                            {% if mi.include_in_member_profiles %}
+                                <a href="{% url 'seednetwork.views_user.member' mid=mi.id %}">{{ seed.user.username }}</a>
+                            {% else %}
+                                {{ seed.user.username }}
+                            {% endif %}
+                        </td>
                         <td>{{ mi.town }}</td>
                     {% endwith %}
                         <td>{{ seed.seed_type }}</td>

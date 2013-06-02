@@ -23,6 +23,7 @@ urlpatterns = patterns('',
 	(r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name':'login.html', 'authentication_form':SeedNetworkAuthForm}),
 	(r'^accounts/logout/$', 'django.contrib.auth.views.logout', {'template_name':'logout.html', 'next_page':'/'}),
 	(r'^accounts/profile/$', 'seednetwork.views_user.profile'),
+	(r'^accounts/member/(?P<mid>[0-9]+)$', 'seednetwork.views_user.member'),
 	(r'^accounts/profile-edit/$', 'seednetwork.views_user.edit_profile'),
 
     (r'^accounts/new-user/$', 'seednetwork.views_user.new_user'),

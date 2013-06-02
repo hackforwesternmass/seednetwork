@@ -102,3 +102,11 @@ def edit_profile(request):
 	return render_to_response('profile-edit.html',
 		{ "form": form, "error": error },
         context_instance=RequestContext(request))
+
+@login_required
+def member(request, mid):
+	memberinfo = get_object_or_404(MemberInfo, pk=mid)
+
+	return render_to_response('member.html',
+			{ "memberinfo":memberinfo },
+			                  context_instance=RequestContext(request))

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block pagetitle %}{{ mem.user.username }} Member Profile{% endblock %}
+{% block content %}
+    {% if memberinfo.include_in_member_profiles %}
+
+        <table class="form">
+        <tr><th>Username:</th><td>{{ memberinfo.user.username }}</td></tr>
+        <tr><th>First name:</th><td>{{ memberinfo.user.first_name }}</td></tr>
+        <tr><th>Last name:</th><td>{{ memberinfo.user.last_name }}</td></tr>
+            {% if memberinfo.email_is_public %}
+                <tr><th>e-mail:</th><td>{{ memberinfo.user.email }}</td></tr>
+            {% endif %}
+            {% if memberinfo.phone_is_public %}
+                <tr><th>Phone:</th><td>{{ memberinfo.phone }}</td></tr>
+            {% endif %}
+                <tr><th>Town:</th><td>{{ memberinfo.town }}</td></tr>
+            {% if memberinfo.street_address_is_public %}
+                <tr><th>Street Address:</th><td>{{ memberinfo.street_address }}</td></tr>
+            {% endif %}
+            {% if memberinfo.mailing_address_is_public %}
+                <tr><th>Mailing Address:</th><td>{{ memberinfo.mailing_address }}</td></tr>
+            {% endif %}
+        <tr><th>About me:</th><td>{{ memberinfo.about_me }}</td></tr>
+        </table>
+        <br/>
+    {% else %}
+        <p>This member is private</p>
+    {% endif %}
+{% endblock %}
