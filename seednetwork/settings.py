@@ -1,5 +1,6 @@
 # Django settings for seednetwork project.
 import os
+import dj_database_url
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -10,19 +11,7 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-ENGINE_ENV_VAR = os.environ['SEEDNETWORK_DB_ENGINE']
-
-DATABASES = {
-    'default': {
-        'ENGINE': ENGINE_ENV_VAR, # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': os.environ['SEEDNETWORK_DBNAME'],
-        # The following settings are not used with sqlite3:
-        'USER': os.environ['SEEDNETWORK_DBUSER'],
-        'PASSWORD': os.environ['SEEDNETWORK_DBPWD'],
-        'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '',                      # Set to empty string for default.
-    }
-}
+DATABASES = {'default': dj_database_url.config()}
 
 EMAIL_HOST = os.environ['SEEDNETWORK_EMAIL_HOST']
 EMAIL_HOST_USER = os.environ['SEEDNETWORK_EMAIL_HOST_USER']
@@ -33,7 +22,7 @@ EMAIL_USE_TLS = False
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [ 'seednetwork.herokuapp.com' ]
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name

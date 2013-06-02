@@ -5,17 +5,31 @@ The distributed seed library for the Hilltown Seed Saving Network
 This is a Django site. To make it easier to deploy without changing settings.py, use the following environment variables
 
 ```shell
-SEEDNETWORK_DB_ENGINE
 SEEDNETWORK_SECRETKEY
-SEEDNETWORK_DBUSER
-SEEDNETWORK_DBPWD
-SEEDNETWORK_DBNAME
 SEEDNETWORK_EMAIL_HOST
 SEEDNETWORK_EMAIL_PORT
 SEEDNETWORK_EMAIL_HOST_USER
 SEEDNETWORK_EMAIL_HOST_PASSWORD
 SEEDNETWORK_DEFAULT_FROM_EMAIL
 ```
+
+This site uses dj_database_url for DB configuration, so set DATABASE_URL using its syntax. A sample mysql URL is
+
+```shell
+export DATABASE_URL='mysql://user:pwd@host:port/database'
+```
+
+Heroku Deploy Instructions
+--------------------------
+1. Follow the normal Heroku Django procedure
+2. Set the environment
+
+```shell
+heroku config:set DATABASE_URL='mysql://user:pwd@host:port/database'
+heroku config:set SEEDNETWORK_SECRETKEY='xxxxxxxxxxxxxxxxxxxxxxxxx'
+heroku config:set SEEDNETWORK_EMAIL_HOST='smtp.example.com'
+```
+
 
 About the Hilltown Seed Saving Network 
 --------------------------------------
