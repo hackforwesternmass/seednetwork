@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block pagetitle %}{{ user.username}}'s Seeds{% endblock %}
+{% block content %}
+{% if seed_list %}
+    <table>
+    <tr><th>Type</th><th>Crop</th><th>Description</th><th>Actions</th></tr>
+    {% for seed in seed_list %}
+        <tr><td>{{ seed.seed_type }}</td>
+        <td>{{ seed.crop_type }}</td>
+		<td>{{ seed.seed_description }} </td></tr>
+        <td></td>
+    {% endfor %}
+    </table>
+{% else %}
+    <p>No seeds are available.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Seed Library: Seed Confirm{% endblock %}
+
+{% block content %}
+   
+        <h3>Seed Confirmation</h3>
+		
+		<p>Your seed has been listed. Thanks! </p>
+		
+		<p><a href="{% url 'seedlibrary.views.seed_create' %}">List Another</a>
+		
+		<p><a href="{% url 'seedlibrary.views.seeds' %}">Go back to the Library</a>
+    
+{%endblock%}
