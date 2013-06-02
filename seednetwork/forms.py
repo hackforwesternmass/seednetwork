@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 
 def as_table_func(self):
 	return self._html_output(
@@ -34,6 +34,10 @@ class MemberInfoForm(SeedNetworkBaseForm):
 	include_in_member_profiles = forms.BooleanField(required=False)
 
 class SeedNetworkAuthForm(AuthenticationForm):
+	def as_table(self):
+		return as_table_func(self)
+
+class SeedNetworkPasswordChangeForm(PasswordChangeForm):
 	def as_table(self):
 		return as_table_func(self)
 

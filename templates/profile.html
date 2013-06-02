@@ -13,9 +13,9 @@
         <tr><th>Mailing Address:</th><td>{{ memberinfo.mailing_address }} <em>({% if memberinfo.mailing_address_is_public %}public{% else %}private{% endif %})</em></td></tr>
         <tr><th>About me:</th><td>{{ memberinfo.about_me }}</td></tr>
         </table>
-        <a href="{% url 'seednetwork.views_user.edit_profile' %}">Edit</a>
-
-
+        <br/>
+        <a href="{% url 'seednetwork.views_user.edit_profile' %}">Edit Profile</a> |
+        <a href="{% url 'django.contrib.auth.views.password_change' %}">Change Password</a>
     {% else %}
     {% endif %}
 {% endblock %}
