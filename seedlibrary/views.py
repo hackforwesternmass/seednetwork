@@ -1,5 +1,5 @@
 # Seed library views
-from django.shortcuts import render_to_response, redirect
+from django.shortcuts import render_to_response, redirect, get_object_or_404
 from django.template.context import RequestContext
 from django.contrib.auth.decorators import login_required
 
@@ -54,34 +54,31 @@ def seeds(request):
 		context_instance=RequestContext(request))
 
 def fill_seed_from_form(seed, form):
-        seed_type = form.cleaned_data['seed_type'],
-        crop_type = form.cleaned_data['crop_type'],
-        seed_variety = form.cleaned_data['seed_variety'],
-        seed_description = form.cleaned_data['seed_description'],
-        enough_to_share = form.cleaned_data['enough_to_share'],
-        year = form.cleaned_data['year'],
-        origin = form.cleaned_data['origin']
-
-
+	seed.seed_type = form.cleaned_data['seed_type']
+	seed.crop_type = form.cleaned_data['crop_type']
+	seed.seed_variety = form.cleaned_data['seed_variety']
+	seed.seed_description = form.cleaned_data['seed_description']
+	seed.enough_to_share = form.cleaned_data['enough_to_share']
+	seed.year = form.cleaned_data['year']
+	seed.origin = form.cleaned_data['origin']
 
 @login_required
-def edit_seed(request):
-	seed = request.seed
-	s = get_seed(seed)
+def edit_seed(request, id):
+	seed = get_object_or_404(Seed, pk=id)
 	error = None
 
 	if request.method == 'POST':
 		form = SeedForm(request.POST)
 		if form.is_valid():
-			fill_seed_from_form(s, form)
-			s.save()
+			fill_seed_from_form(seed, form)
+			seed.save()
 			return redirect('seedlibrary.views.seeds')
 	else:
 		data = {}
 		data['seed_type'] = seed.seed_type
 		data['crop_type'] = seed.crop_type
 		data['seed_variety'] = seed.seed_variety
-		data['seed_description'] = seed.description
+		data['seed_description'] = seed.seed_description
 		data['enough_to_share'] = seed.enough_to_share
 		data['year'] = seed.year
 		data['origin'] = seed.origin
@@ -89,7 +86,7 @@ def edit_seed(request):
 		form = SeedForm(data)
 
 	return render_to_response('seed-edit.html',
-		{ "form": form, "error": error },
+		{ "seed":seed, "form": form, "error": error },
         context_instance=RequestContext(request))
 
 

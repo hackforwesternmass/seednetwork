@@ -40,3 +40,13 @@ table.form th {
     margin:0;
     padding:0;
 }
+
+table.results th {
+    background-color: #333333;
+    color:white;
+}
+
+table.results td, th{
+    padding-left: 10px;
+    padding-right: 10px;
+}

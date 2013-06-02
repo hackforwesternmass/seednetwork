@@ -7,7 +7,7 @@ urlpatterns = patterns('',
    url(r'^seeds/create/$', 'seedlibrary.views.seed_create'),
    url(r'^seeds/confirm/$', 'seedlibrary.views.seed_create_confirm'),
    url(r'^seeds/$', 'seedlibrary.views.seeds'),
-   url(r'^seeds/edit/$', 'seedlibrary.views.edit_seed'),
+   url(r'^seeds/edit/(?P<id>[0-9]+)$', 'seedlibrary.views.edit_seed'),
  
 )
 

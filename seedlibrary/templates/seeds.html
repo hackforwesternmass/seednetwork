@@ -2,13 +2,23 @@
 {% block pagetitle %}{{ user.username}}'s Seeds{% endblock %}
 {% block content %}
 {% if seed_list %}
-    <table>
-    <tr><th>Type</th><th>Crop</th><th>Description</th><th>Actions</th></tr>
+    <table class="results">
+    <tr><th>Type</th>
+        <th>Crop</th>
+        <th>Variety</th>
+        <th>Year</th>
+        <th>Origin</th>
+        <th>Description</th>
+        <th>Actions</th></tr>
     {% for seed in seed_list %}
         <tr><td>{{ seed.seed_type }}</td>
         <td>{{ seed.crop_type }}</td>
-		<td>{{ seed.seed_description }} </td></tr>
-        <td></td>
+        <td>{{ seed.seed_variety }}</td>
+        <td>{{ seed.year }}</td>
+        <td>{{ seed.origin }}</td>
+		<td>{{ seed.seed_description }} </td>
+        <td><a href="{% url 'seedlibrary.views.edit_seed' id=seed.id %}">Edit</a></td>
+        </tr>
     {% endfor %}
     </table>
 {% else %}
