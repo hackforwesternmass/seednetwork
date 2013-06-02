@@ -9,6 +9,7 @@ from django.db.models import Q
 def seed_search(request):
 	query = ''
 	seed_list = []
+
 	if request.method=='POST':
 		query = request.POST['q']
 		seed_list = Seed.objects.filter(

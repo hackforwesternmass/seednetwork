@@ -10,6 +10,7 @@
         {% if seed_list %}
             <table class="results">
                 <tr><th>Member</th>
+                    <th>Town</th>
                     <th>Type</th>
                     <th>Crop</th>
                     <th>Variety</th>
@@ -20,6 +21,9 @@
                     <th>Actions</th></tr>
                 {% for seed in seed_list %}
                     <tr><td>{{ seed.user.username }}</td>
+                    {% with seed.user.memberinfo_set.all|first as mi %}
+                        <td>{{ mi.town }}</td>
+                    {% endwith %}
                         <td>{{ seed.seed_type }}</td>
                         <td>{{ seed.crop_type }}</td>
                         <td>{{ seed.seed_variety }}</td>
@@ -28,13 +32,15 @@
                         <td>{{ seed.enough_to_share|yesno:"Yes,No" }}</td>
                         <td>{{ seed.seed_description }} </td>
                         <td>
+                            {% ifequal seed.user.username user.username %}
                             <a href="{% url 'seedlibrary.views.seed_edit' id=seed.id %}">Edit</a>
+                            {% endifequal %}
                         </td>
                     </tr>
                 {% endfor %}
             </table>
         {% else %}
-            <p>No seeds are available.</p>
+
         {% endif %}
 
     {% endif %}
