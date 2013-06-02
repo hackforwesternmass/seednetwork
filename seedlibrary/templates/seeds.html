@@ -8,6 +8,7 @@
         <th>Variety</th>
         <th>Year</th>
         <th>Origin</th>
+        <th>Share</th>
         <th>Description</th>
         <th>Actions</th></tr>
     {% for seed in seed_list %}
@@ -16,6 +17,7 @@
         <td>{{ seed.seed_variety }}</td>
         <td>{{ seed.year }}</td>
         <td>{{ seed.origin }}</td>
+        <td>{{ seed.enough_to_share|yesno:"Yes,No" }}</td>
 		<td>{{ seed.seed_description }} </td>
         <td><a href="{% url 'seedlibrary.views.edit_seed' id=seed.id %}">Edit</a></td>
         </tr>

@@ -41,9 +41,27 @@ table.form th {
     padding:0;
 }
 
+table.results {
+    border-collapse: collapse;
+}
+
+
+table.results td {
+    background-color: #ddd;
+    color:black;
+    padding: 4px;
+}
+
+table.results tr {
+    border-bottom: 1px solid white;
+}
+
 table.results th {
-    background-color: #333333;
+    background-color: #80904f;
     color:white;
+    text-align: left;
+    font-family: Arial, sans-serif;
+    font-weight: normal;
 }
 
 table.results td, th{
