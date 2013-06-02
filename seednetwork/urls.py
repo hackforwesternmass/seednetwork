@@ -2,6 +2,8 @@ from django.conf.urls import patterns, include, url
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
+from seednetwork.forms import SeedNetworkAuthForm
+
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -18,7 +20,7 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 
     # user management
-	(r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name':'login.html'}),
+	(r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name':'login.html', 'authentication_form':SeedNetworkAuthForm}),
 	(r'^accounts/logout/$', 'django.contrib.auth.views.logout', {'template_name':'logout.html', 'next_page':'/'}),
 	(r'^accounts/profile/$', 'seednetwork.views_user.profile'),
 	(r'^accounts/profile-edit/$', 'seednetwork.views_user.edit_profile'),

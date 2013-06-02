@@ -1,6 +1,7 @@
 from django import forms
+from seednetwork.forms import SeedNetworkBaseForm
 
-class SeedForm(forms.Form):
+class SeedForm(SeedNetworkBaseForm):
 	seed_type = forms.CharField(max_length=150, required=False, help_text="i.e. vegetable, herb, perennial, fruit bush, fruit tree, etc.")
 	crop_type = forms.CharField(max_length=150, required=False, help_text="i.e. carrot, bean, mint, ,day lillies, currant, apple, etc.")
 	seed_variety = forms.CharField(max_length=150, required=False, help_text="i.e. Danvers, KY Wonder, Peppermint, etc.")

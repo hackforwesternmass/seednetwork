@@ -18,7 +18,9 @@ table.form th {
 .nav {
     color: white;
     vertical-align: middle;
-    font-family: Arial;
+    font-family: Arial, sans-serif;
+    background-color: #80904f;
+    padding-left: 10px;
 }
 
 .nav a:link {
@@ -30,4 +32,11 @@ table.form th {
 }
 .nav a:hover {
     color: white;
+}
+
+.errorlist {
+    list-style-type: none;
+    color: red;
+    margin:0;
+    padding:0;
 }
