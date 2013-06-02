@@ -16,17 +16,17 @@ def home(request):
 def seed_create(request):
 	seed_form = SeedForm()  
 	if request.method == 'POST':
-		seedform = SeedForm(request.POST)
-		if seedform.is_valid():
+		seed_form = SeedForm(request.POST)
+		if seed_form.is_valid():
 			seed = Seed.objects.create(
                                 user = request.user,
-				seed_type = seedform.cleaned_data['seed_type'],
-				crop_type = seedform.cleaned_data['crop_type'],
-				seed_variety = seedform.cleaned_data['seed_variety'],
-                                seed_description = seedform.cleaned_data['seed_description'],
-				enough_to_share = seedform.cleaned_data['enough_to_share'],
-                                year = seedform.cleaned_data['year'],
-                                origin = seedform.cleaned_data['origin']
+				seed_type = seed_form.cleaned_data['seed_type'],
+				crop_type = seed_form.cleaned_data['crop_type'],
+				seed_variety = seed_form.cleaned_data['seed_variety'],
+                                seed_description = seed_form.cleaned_data['seed_description'],
+				enough_to_share = seed_form.cleaned_data['enough_to_share'],
+                                year = seed_form.cleaned_data['year'],
+                                origin = seed_form.cleaned_data['origin']
 				)
 			seed.save()
 			return redirect('seedlibrary.views.seed_create_confirm')
@@ -63,7 +63,7 @@ def fill_seed_from_form(seed, form):
 	seed.origin = form.cleaned_data['origin']
 
 @login_required
-def edit_seed(request, id):
+def seed_edit(request, id):
 	seed = get_object_or_404(Seed, pk=id)
 	error = None
 

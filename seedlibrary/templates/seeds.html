@@ -20,7 +20,7 @@
         <td>{{ seed.origin }}</td>
         <td>{{ seed.enough_to_share|yesno:"Yes,No" }}</td>
 		<td>{{ seed.seed_description }} </td>
-        <td><a href="{% url 'seedlibrary.views.edit_seed' id=seed.id %}">Edit</a></td>
+        <td><a href="{% url 'seedlibrary.views.seed_edit' id=seed.id %}">Edit</a></td>
         </tr>
     {% endfor %}
     </table>
