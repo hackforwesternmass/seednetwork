@@ -51,6 +51,9 @@
                     | <a href="{% url 'seednetwork.views_user.profile' %}">My profile</a>
                     | <a href="{% url 'seedlibrary.views.seeds' %}">My seeds</a>
                     | <a href="{% url 'django.contrib.auth.views.logout' %}">Log out</a>
+                    {% if user.is_staff %}
+                        | <a href="/admin">Admin Panel</a>
+                    {% endif %}
                 {% endif %}
             </td>
         </tr>
