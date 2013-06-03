@@ -2,6 +2,7 @@ from django.conf.urls import patterns, include, url
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
+from seednetwork import settings
 from seednetwork.forms import SeedNetworkAuthForm, SeedNetworkPasswordChangeForm
 
 admin.autodiscover()
@@ -51,3 +52,8 @@ urlpatterns = patterns('',
 	(r'^accounts/change-password/done/$', 'django.contrib.auth.views.password_change_done',
 		 {'template_name':'password_change_done.html'}),
 )
+
+if not settings.DEBUG:
+	urlpatterns += patterns('',
+		(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
+	                        )
