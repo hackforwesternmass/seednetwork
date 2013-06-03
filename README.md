@@ -38,6 +38,10 @@ The collectstatic for this app needs the environment, so you need to install use
 ```shell
 heroku labs:enable user-env-compile -a seednetwork
 ```
+You need SMTP for the forgot password feature. Sendgrid has a free plan
+```shell
+heroku addons:add sendgrid:starter
+```
 
 About the Hilltown Seed Saving Network 
 --------------------------------------
