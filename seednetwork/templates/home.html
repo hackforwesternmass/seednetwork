@@ -10,8 +10,9 @@
 
     {% if user.is_authenticated %}
         <p>If you have a seed to list, visit the <a href="{% url 'seedlibrary.views.seed_create' %}">seed listing form</a>.</p>
-        <p><form  class="searchform" method="post" action="{% url 'seedlibrary.views_search.seed_search' %}">{% csrf_token %}
-            <input type="text" name="q"> <input type="submit" value="Search">
+        <p>You can also browse <a href="javascript:document.forms.search.q.value='';document.forms.search.submit()">all of the seeds</a>.</p>
+        <p><form id="search" class="searchform" method="post" action="{% url 'seedlibrary.views_search.seed_search' %}">{% csrf_token %}
+            <input id="q" type="text" name="q"> <input type="submit" value="Search">
         </form></p>
     {% else %}
         <table>
