@@ -12,7 +12,7 @@ def seed_search(request):
 
 	if request.method=='POST':
 		query = request.POST['q']
-		seed_list = Seed.objects.all()
+		seed_list = Seed.objects.all().order_by('seed_type', 'crop_type', 'seed_variety')
 		for word in query.split():
 			word = word.lower()
 			seed_list = seed_list.filter(
