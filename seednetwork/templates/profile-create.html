@@ -1,13 +1,16 @@
 {% extends "base.html" %}
-
+{% block title %}Seed network: register as a new member{% endblock %}
+{% block pagetitle %}Register as a new member{% endblock %}
 {% block content %}
     {% if user.is_authenticated %}
-        <form method="post" action=".">{% csrf_token %}
-        <table>
-        {{ form.as_table }}
-            <tr><td colspan="2"><a href="{% url 'seednetwork.views_user.profile' %}">Cancel</a><input type="submit" value="Update" /></td></tr>
-        </table>
-        </form>
+        <p>You are already logged in.</p>
     {% else %}
+        <form method="post" action="{% url 'seednetwork.views_user.new_user' %}">
+            <table>{% csrf_token %}
+                {{ uiform.as_table }}
+                {{ miform.as_table }}
+            </table>
+            <a href="{% url 'seednetwork.views.home' %}">Cancel</a> | <input type="submit" value="Register">
+        </form>
     {% endif %}
 {% endblock %}

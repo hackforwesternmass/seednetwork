@@ -1,3 +1,4 @@
+from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.models import User
@@ -49,6 +50,12 @@ def new_user(request):
 				mi = MemberInfo.objects.create(user=user)
 				fill_member_from_form(mi, miform)
 				mi.save()
+				authuser = authenticate(username=user.username, password=uiform.cleaned_data['password1'])
+				if authuser is not None:
+					if authuser.is_active:
+						login(request, authuser)
+						return redirect('seednetwork.views.home')
+
 			else:
 				return render_to_response('profile-create.html',
 					{ "miform": miform, "uiform": uiform },
