@@ -1,3 +1,24 @@
+body {
+    background-color: #f5f5e7;
+}
+a:link {
+    color: #e58712;
+}
+a:visited {
+    color: #CC3333;
+}
+a:hover {
+    color: #0000FF;
+}
+.pagetitle {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    color: #80904f;
+}
+.footer {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: x-small;
+}
+
 p {
     margin-top: 0px;
     margin-bottom: 1em;
