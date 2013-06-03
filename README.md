@@ -21,8 +21,11 @@ export DATABASE_URL='mysql://user:pwd@host:port/database'
 
 Heroku Deploy Instructions
 --------------------------
-1. Follow the normal Heroku Django procedure
-2. Set the environment
+Follow the normal Heroku Django procedure
+
+https://devcenter.heroku.com/articles/django
+
+Set the environment, for example:
 
 ```shell
 heroku config:set DATABASE_URL='mysql://user:pwd@host:port/database'
@@ -30,6 +33,11 @@ heroku config:set SEEDNETWORK_SECRETKEY='xxxxxxxxxxxxxxxxxxxxxxxxx'
 heroku config:set SEEDNETWORK_EMAIL_HOST='smtp.example.com'
 ```
 
+The collectstatic for this app needs the environment, so you need to install user-env-compile
+
+```shell
+heroku labs:enable user-env-compile -a seednetwork
+```
 
 About the Hilltown Seed Saving Network 
 --------------------------------------
