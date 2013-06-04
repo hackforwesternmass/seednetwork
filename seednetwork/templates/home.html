@@ -1,20 +1,36 @@
 {% extends "base.html" %}
 {% block pagetitle %}
+      
+	 Welcome to the Hilltown Virtual Seed Bank
+	   
     {% if user.is_authenticated %}
-        Welcome to the virtual seed library
+       
     {% else %}
-    Welcome to the network! Login or Register to get started
+    
     {% endif %}
 {% endblock %}
 {% block content %}
 
+
+	  
     {% if user.is_authenticated %}
-        <p>If you have a seed to list, visit the <a href="{% url 'seedlibrary.views.seed_create' %}">seed listing form</a>.</p>
-        <p>You can also browse <a href="javascript:document.forms.search.q.value='';document.forms.search.submit()">all of the seeds</a>.</p>
+        <h3><a href="{% url 'seedlibrary.views.seed_create' %}">Add a new seed</a> or 
+         <a href="javascript:document.forms.search.q.value='';document.forms.search.submit()">Browse all seeds</a> or 
+		 Search for seeds, towns, or members below:
         <p><form id="search" class="searchform" method="post" action="{% url 'seedlibrary.views_search.seed_search' %}">{% csrf_token %}
             <input id="q" type="text" name="q"> <input type="submit" value="Search">
         </form></p>
     {% else %}
+	
+	<p>
+	  The Hilltown Seed Saving Network is a group of people in the Hilltowns of Western Massachusetts interested in saving seeds. 
+	  We are working to educate ourselves and our neighbors about seed saving. Our virtual seed bank 
+	  is for sharing information about what seeds we have in our own collections and how best to grow them in this region.
+We are from Cummington, Chesterfield, Plainfield, Worthington, Windsor, Goshen, Ashfield and surrounding towns in the region and 
+meet monthly in Cummington. More information about our group can be found at <a href="http://hilltownseeds.wordpress.com/"> http://hilltownseeds.wordpress.com/</a>. Please join us.
+	  </p>
+	  
+	<h2>  Login or Register to use the Virtual Seed Bank. </h2>
         <table>
         <tr>
         <td width="298" height="714" valign="top">

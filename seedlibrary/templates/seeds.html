@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 {% block pagetitle %}{{ user.username}}'s Seeds{% endblock %}
 {% block content %}
-<p>You have listed {{ seed_list.count }} seed{{ seed_list.count|pluralize }}</p>
+<p>You have listed {{ seed_list.count }} seed{{ seed_list.count|pluralize }}.</p>
+
+<p><a href="{% url 'seedlibrary.views.seed_create' %}">Add a new seed</a></p>
 {% if seed_list %}
     <table class="results">
     <tr>

@@ -3,10 +3,10 @@
     <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-        <meta name="Description" content="Online Virtual Seed Library for the Hilltowns of Western Massachusetts. Sign up to list your seeds, see what seeds are available or find information direct from growers and seed developers in our region." />
-        <meta name="Keywords" content="seed, saving, saver, library, archive, heirloom, variety, network, agriculture, permaculture, hilltown, massachusetts, cummington, worthingon, goshen, plainfield, peru, ashfield, windsor, chesterfield, williamsburg, hawley, savoy, cultivation, information, share, cultivar, yield, performance" />
+        <meta name="Description" content="Online Virtual Seed Bank for the Hilltowns of Western Massachusetts. Sign up to list your seeds, see what seeds are available or find information direct from growers and seed developers in our region." />
+        <meta name="Keywords" content="seed, saving, saver, bank, library, archive, heirloom, variety, network, agriculture, permaculture, hilltown, massachusetts, cummington, worthingon, goshen, plainfield, peru, ashfield, windsor, chesterfield, williamsburg, hawley, savoy, cultivation, information, share, cultivar, yield, performance" />
 
-        <title>{% block title %}Hilltown Seed Saving Network Virtual Seed Library{% endblock %}</title>
+        <title>{% block title %}Hilltown Seed Saving Network Virtual Seed Bank{% endblock %}</title>
         <link rel="shortcut icon" href="{% static "images/favicon.jpg" %}">
         <link rel="stylesheet" type="text/css" href="{% static "css/site.css" %}">
     <body>
@@ -14,15 +14,16 @@
         <tr>
             <td width="1000" height="99" valign="top">
                 <a href="/">
-                    <img src={% static "images/header.jpg" %} alt="Hilltown Seed Saving Network Virtual Seed Library" width="1000" height="140" /></td>
+                    <img src={% static "images/header.jpg" %} alt="Hilltown Seed Saving Network Virtual Seed Bank" width="1000" height="140" /></td>
             </a>
 
             </td>
         </tr>
         <tr>
             <td class="nav" height="25">
-                <a href="{% url 'seednetwork.views.home' %}">Home</a>
+               
                 {% if user.is_authenticated %}
+				 <a href="{% url 'seednetwork.views.home' %}">Seed Bank</a>
                     | <a href="{% url 'seednetwork.views_user.profile' %}">My profile</a>
                     | <a href="{% url 'seedlibrary.views.seeds' %}">My seeds</a>
                     | <a href="{% url 'django.contrib.auth.views.logout' %}">Log out</a>
@@ -49,7 +50,7 @@
             </td>
         </tr>
         <tr>
-            <td height="16" valign="top"><span class="footer">Hilltown Seed Saving Network, for the Hilltowns of Western Masschusetts &bull; <a href="mailto:&lt;hilltownseedsavingnetwork@gmail.com&gt;">hilltownseedsavingnetwork@gmail.com</a> &bull; <a href="mailto:&lt;rose@threesalamanders.com&gt;">Email Webmaster </a></span></td>
+            <td height="16" valign="top"><span class="footer">Hilltown Seed Saving Network, for the Hilltowns of Western Massachusetts &bull; <a href="mailto:&lt;hilltownseedsavingnetwork@gmail.com&gt;">hilltownseedsavingnetwork@gmail.com</a> &bull; <a href="mailto:&lt;rose@threesalamanders.com&gt;">Email Webmaster </a></span></td>
         </tr>
     </table>
     </body>
