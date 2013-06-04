@@ -19,19 +19,19 @@ class MemberInfoForm(SeedNetworkBaseForm):
 	first_name = forms.CharField(max_length=150, required=True)
 	last_name = forms.CharField(max_length=150, required=True)
 	email = forms.CharField(max_length=150, required=True)
-	email_is_public = forms.BooleanField(required=False)
+	email_is_public = forms.BooleanField(required=False, initial=True)
 	town = forms.CharField(max_length=150, required=True)
 	phone = forms.CharField(max_length=150, required=False)
-	phone_is_public = forms.BooleanField(required=False)
+	phone_is_public = forms.BooleanField(required=False, initial=True)
 
 	street_address = forms.CharField(widget=forms.Textarea(attrs={'rows':'5', 'cols':'60'}), required=False)
-	street_address_is_public = forms.BooleanField(required=False)
+	street_address_is_public = forms.BooleanField(required=False, initial=True)
 
 	mailing_address = forms.CharField(widget=forms.Textarea(attrs={'rows':'5', 'cols':'60'}), required=False, help_text="(if different from street address)")
-	mailing_address_is_public = forms.BooleanField(required=False)
+	mailing_address_is_public = forms.BooleanField(required=False, initial=True)
 
 	about_me = forms.CharField(widget=forms.Textarea(attrs={'rows':'5', 'cols':'60'}), required=False)
-	include_in_member_profiles = forms.BooleanField(required=False)
+	include_in_member_profiles = forms.BooleanField(required=False, initial=True)
 
 class SeedNetworkAuthForm(AuthenticationForm):
 	def as_table(self):
