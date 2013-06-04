@@ -24,10 +24,10 @@ class MemberInfoForm(SeedNetworkBaseForm):
 	phone = forms.CharField(max_length=150, required=False)
 	phone_is_public = forms.BooleanField(required=False, initial=True)
 
-	street_address = forms.CharField(widget=forms.Textarea(attrs={'rows':'5', 'cols':'60'}), required=False)
+	street_address = forms.CharField(widget=forms.Textarea(attrs={'rows':'3', 'cols':'60'}), required=False)
 	street_address_is_public = forms.BooleanField(required=False, initial=True)
 
-	mailing_address = forms.CharField(widget=forms.Textarea(attrs={'rows':'5', 'cols':'60'}), required=False, help_text="(if different from street address)")
+	mailing_address = forms.CharField(widget=forms.Textarea(attrs={'rows':'3', 'cols':'60'}), required=False, help_text="(if different from street address)")
 	mailing_address_is_public = forms.BooleanField(required=False, initial=True)
 
 	about_me = forms.CharField(widget=forms.Textarea(attrs={'rows':'5', 'cols':'60'}), required=False)
