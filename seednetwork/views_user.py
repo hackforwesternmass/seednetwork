@@ -35,31 +35,30 @@ def new_user(request):
 
 	if request.method == 'POST':
 		miform = MemberInfoForm(request.POST)
-		if miform.is_valid():
-			uiform = UserCreationForm(request.POST)
-			if uiform.is_valid():
-				user = User.objects.create_user(
-					uiform.cleaned_data['username'],
-					miform.cleaned_data['email'],
-				    uiform.cleaned_data['password1'],
-				    first_name = miform.cleaned_data['first_name'],
-				    last_name = miform.cleaned_data['last_name'],
-				    )
-				user.save()
+		uiform = UserCreationForm(request.POST)
+		if miform.is_valid() and uiform.is_valid():
+			user = User.objects.create_user(
+				uiform.cleaned_data['username'],
+				miform.cleaned_data['email'],
+			    uiform.cleaned_data['password1'],
+			    first_name = miform.cleaned_data['first_name'],
+			    last_name = miform.cleaned_data['last_name'],
+			    )
+			user.save()
 
-				mi = MemberInfo.objects.create(user=user)
-				fill_member_from_form(mi, miform)
-				mi.save()
-				authuser = authenticate(username=user.username, password=uiform.cleaned_data['password1'])
-				if authuser is not None:
-					if authuser.is_active:
-						login(request, authuser)
-						return redirect('seednetwork.views.home')
+			mi = MemberInfo.objects.create(user=user)
+			fill_member_from_form(mi, miform)
+			mi.save()
+			authuser = authenticate(username=user.username, password=uiform.cleaned_data['password1'])
+			if authuser is not None:
+				if authuser.is_active:
+					login(request, authuser)
+					return redirect('seednetwork.views.home')
 
-			else:
-				return render_to_response('profile-create.html',
-					{ "miform": miform, "uiform": uiform },
-		              context_instance=RequestContext(request))
+
+		return render_to_response('profile-create.html',
+			{ "miform": miform, "uiform": uiform },
+              context_instance=RequestContext(request))
 
 	return redirect('seednetwork.views.home')
 
