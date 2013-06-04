@@ -25,6 +25,8 @@ urlpatterns = patterns('',
 	(r'^accounts/logout/$', 'django.contrib.auth.views.logout', {'template_name':'logout.html', 'next_page':'/'}),
 	(r'^accounts/profile/$', 'seednetwork.views_user.profile'),
 	(r'^accounts/member/(?P<mid>[0-9]+)$', 'seednetwork.views_user.member'),
+	(r'^accounts/members/$', 'seednetwork.views_user.members'),
+
 	(r'^accounts/profile-edit/$', 'seednetwork.views_user.edit_profile'),
 
     (r'^accounts/new-user/$', 'seednetwork.views_user.new_user'),
@@ -42,9 +44,6 @@ urlpatterns = patterns('',
 
 	(r'^accounts/reset-password-complete/$', 'django.contrib.auth.views.password_reset_complete',
 		{'template_name':'password_reset_complete.html'}),
-
-
-
 
 	(r'^accounts/change-password/$', 'django.contrib.auth.views.password_change',
 		 {'template_name':'password_change.html', 'password_change_form':SeedNetworkPasswordChangeForm}),

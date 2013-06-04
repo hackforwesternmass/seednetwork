@@ -116,3 +116,12 @@ def member(request, mid):
 	return render_to_response('member.html',
 			{ "memberinfo":memberinfo },
 			                  context_instance=RequestContext(request))
+
+
+@login_required
+def members(request):
+	memberinfo_list = MemberInfo.objects.all().order_by('user__username')
+
+	return render_to_response('members.html',
+			{ "memberinfo_list":memberinfo_list },
+			                  context_instance=RequestContext(request))

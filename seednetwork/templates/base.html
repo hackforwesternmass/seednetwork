@@ -24,6 +24,7 @@
                
                 {% if user.is_authenticated %}
 				 <a href="{% url 'seednetwork.views.home' %}">Seed Bank</a>
+                    | <a href="{% url 'seednetwork.views_user.members' %}">Members</a>
                     | <a href="{% url 'seednetwork.views_user.profile' %}">My profile</a>
                     | <a href="{% url 'seedlibrary.views.seeds' %}">My seeds</a>
                     | <a href="{% url 'django.contrib.auth.views.logout' %}">Log out</a>

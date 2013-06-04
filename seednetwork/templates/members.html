@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block pagetitle %}{{ user.username}}Seed bank members{% endblock %}
+{% block content %}
+    {% if memberinfo_list %}
+        <table class="results">
+            <tr>
+                <th>Username</th>
+                <th>Town</th>
+                <th>Phone</th>
+                <th>Email</th>
+            </tr>
+            {% for mi in memberinfo_list %}
+                <tr>
+                   <td>
+                       {% ifequal mi.user user %}
+                       <a href="{% url 'seednetwork.views_user.profile'%}">{{ mi.user.username }}</a>
+                       {% else %}
+                       {% if mi.include_in_member_profiles %}
+                           <a href="{% url 'seednetwork.views_user.member' mid=mi.id %}">{{ mi.user.username }}</a>
+                       {% else %}
+                           {{ mi.user.username }}
+                       {% endif %}
+                       {% endifequal %}
+                   </td>
+                   {% if mi.include_in_member_profiles %}
+                        <td>{{ mi.town }}</td>
+                        <td>{% if mi.email_is_public %}
+                                {{ mi.user.email }}
+                            {% else %}
+                                <em>(private)</em>
+                            {% endif %}
+                        </td>
+                        <td>{% if mi.phone_is_public %}
+                                {{ mi.phone }}
+                            {% else %}
+                                <em>(private)</em>
+                            {% endif %}
+                        </td>
+                   {% else %}
+                        <td colspan="3" style="text-align: center;"><em>(private)</em></td>
+                   {% endif %}
+
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+
+    {% endif %}
+{% endblock %}
