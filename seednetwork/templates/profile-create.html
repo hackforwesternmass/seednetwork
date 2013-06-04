@@ -3,7 +3,7 @@
 {% block pagetitle %}Register as a new member{% endblock %}
 {% block content %}
     {% if user.is_authenticated %}
-        <p>You are already logged in.</p>
+        <p>You are already logged in. You can edit your personal information by clicking on My Profile above.</p>
     {% else %}
         <form method="post" action="{% url 'seednetwork.views_user.new_user' %}">
             <table>{% csrf_token %}
@@ -12,5 +12,6 @@
             </table>
             <a href="{% url 'seednetwork.views.home' %}">Cancel</a> | <input type="submit" value="Register">
         </form>
+		<p>You can edit your information at any time by logging in and clicking on My Profile.</p>
     {% endif %}
 {% endblock %}
