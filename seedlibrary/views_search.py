@@ -9,10 +9,23 @@ from django.db.models import Q
 def seed_search(request):
 	query = ''
 	seed_list = []
+	archived_checked = ""
 
 	if request.method=='POST':
 		query = request.POST['q']
 		seed_list = Seed.objects.all().order_by('seed_type', 'crop_type', 'seed_variety')
+
+		# deal with archive checkbox. Keep it checked if checked.
+		# if not, filter out archived items
+		if 'archive' in request.POST:
+			archived_checked = "checked"
+		else:
+			seed_list = seed_list.filter(archived=False)
+
+		# filter for each word in the query
+		# the search looks in a bunch of fields for each word
+		# and then intersects the results so that each word has
+		# to be somewhere in the record
 		for word in query.split():
 			word = word.lower()
 			seed_list = seed_list.filter(
@@ -24,5 +37,5 @@ def seed_search(request):
 			)
 
 	return render_to_response('seed-search.html',
-			{'q':query, 'seed_list':seed_list},
+			{'q':query, 'archived_checked':archived_checked, 'seed_list':seed_list},
 			context_instance=RequestContext(request))

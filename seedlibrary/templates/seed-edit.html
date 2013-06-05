@@ -7,7 +7,7 @@
         <form method="post" action="{% url 'seedlibrary.views.seed_edit' id=seed.id %}">{% csrf_token %}
         <table>
         {{ form.as_table }}
-            <tr><td colspan="2"><a href="{% url 'seedlibrary.views.seeds' %}">Cancel</a>
+            <tr><td colspan="2"><a href="{% url 'seedlibrary.views.seeds' %}">Cancel</a> |
 			<input type="submit" value="Update" /></td></tr>
         </table>
         </form>
