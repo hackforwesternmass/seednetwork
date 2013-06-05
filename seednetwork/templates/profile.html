@@ -1,17 +1,19 @@
 {% extends "base.html" %}
+
 {% block pagetitle %}{{ user.username }} Member Profile{% endblock %}
 {% block content %}
     {% if user.is_authenticated %}
         <table class="form">
-        <tr><th>Username:</th><td>{{ user.username }}</td></tr>
-        <tr><th>First name:</th><td>{{ user.first_name }}</td></tr>
-        <tr><th>Last name:</th><td>{{ user.last_name }}</td></tr>
-        <tr><th>e-mail:</th><td>{{ user.email }} <em>({% if memberinfo.email_is_public %}public{% else %}private{% endif %})</em></td></tr>
-        <tr><th>Phone:</th><td>{{ memberinfo.phone }} <em>({% if memberinfo.phone_is_public %}public{% else %}private{% endif %})</em></td></tr>
-        <tr><th>Town:</th><td>{{ memberinfo.town }}</td></tr>
-        <tr><th>Street Address:</th><td>{{ memberinfo.street_address }} <em>({% if memberinfo.street_address_is_public %}public{% else %}private{% endif %})</em></td></tr>
-        <tr><th>Mailing Address:</th><td>{{ memberinfo.mailing_address }} <em>({% if memberinfo.mailing_address_is_public %}public{% else %}private{% endif %})</em></td></tr>
-        <tr><th>About me:</th><td>{{ memberinfo.about_me }}</td></tr>
+        <tr><td><b>Username:</b></td><td>{{ user.username }}</td></tr>
+        <tr><td><b>First name:</b></td><td>{{ user.first_name }}</td></tr>
+        <tr><td><b>Last name:</b></td><td>{{ user.last_name }}</td></tr>
+        <tr><td><b>E-mail:</b></td><td>{{ user.email }} <em>({% if memberinfo.email_is_public %}public{% else %}private{% endif %})</em></td></tr>
+        <tr><td><b>Phone:</b></td><td>{{ memberinfo.phone }} <em>({% if memberinfo.phone_is_public %}public{% else %}private{% endif %})</em></td></tr>
+        <tr><td><b>Town:</b></td><td>{{ memberinfo.town }}</td></tr>
+        <tr><td><b>Street Address:</b></td><td>{{ memberinfo.street_address }} <em>({% if memberinfo.street_address_is_public %}public{% else %}private{% endif %})</em></td></tr>
+        <tr><td><b>Mailing Address:</b></td><td>{{ memberinfo.mailing_address }} <em>({% if memberinfo.mailing_address_is_public %}public{% else %}private{% endif %})</em></td></tr>
+        <tr><td><b>About me:</b></td><td>{{ memberinfo.about_me }}</td></tr>
+		<tr><td><b>Include in Member Profiles:</b></td> <td>{% if memberinfo.include_in_member_profiles %} Yes {% else %} No {% endif %}
         </table>
         <br/>
         <a href="{% url 'seednetwork.views_user.edit_profile' %}">Edit Profile</a> |

@@ -30,6 +30,7 @@ def fill_member_from_form(mi, form):
 	mi.mailing_address = form.cleaned_data['mailing_address']
 	mi.mailing_address_is_public = form.cleaned_data['mailing_address_is_public']
 	mi.about_me = form.cleaned_data['about_me']
+	mi.include_in_member_profiles = form.cleaned_data['include_in_member_profiles']
 
 def new_user(request):
 
@@ -102,7 +103,8 @@ def edit_profile(request):
 		data['mailing_address'] = mi.mailing_address
 		data['mailing_address_is_public'] = mi.mailing_address_is_public
 		data['about_me'] = mi.about_me
-
+		data['include_in_member_profiles'] = mi.include_in_member_profiles
+		
 		form = MemberInfoForm(data)
 
 	return render_to_response('profile-edit.html',

@@ -5,9 +5,13 @@
         <table class="results">
             <tr>
                 <th>Username</th>
-                <th>Town</th>
-                <th>Phone</th>
+				<th>Full Name</th>
                 <th>Email</th>
+                <th>Phone</th>
+                <th>Town</th>
+				<th>Street Address</th>
+				<th>Mailing Address</th>
+				<th>About Me</th>
             </tr>
             {% for mi in memberinfo_list %}
                 <tr>
@@ -23,7 +27,8 @@
                        {% endifequal %}
                    </td>
                    {% if mi.include_in_member_profiles %}
-                        <td>{{ mi.town }}</td>
+                        <td>{{ mi.user.first_name }} {{ mi.user.last_name }} </td>
+						
                         <td>{% if mi.email_is_public %}
                                 <a href="mailto:{{ mi.user.email }}">{{ mi.user.email }}</a>
                             {% else %}
@@ -36,8 +41,26 @@
                                 <em>(private)</em>
                             {% endif %}
                         </td>
+						
+						<td>{{ mi.town }}</td>
+						
+						 <td>{% if mi.street_address_is_public %}
+                                {{ mi.street_address }}
+                            {% else %}
+                                <em>(private)</em>
+                            {% endif %}
+                        </td>
+						
+						 <td>{% if mi.mailing_address_is_public %}
+                                {{ mi.mailing_address }}
+                            {% else %}
+                                <em>(private)</em>
+                            {% endif %}
+                        </td>
+						
+						<td>{{ mi.about_me }}</td>
                    {% else %}
-                        <td colspan="3" style="text-align: center;"><em>(private)</em></td>
+                        <td colspan="7" style="text-align: center;"><em>(private)</em></td>
                    {% endif %}
 
                 </tr>
