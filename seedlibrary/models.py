@@ -12,6 +12,8 @@ class Seed(models.Model):
      year = models.CharField(max_length=150, blank=True)
      origin = models.CharField(max_length=150, blank=True)
 
+     archived = models.BooleanField(default=False, blank=False)
+
      def __unicode__(self):
          return self.user.username + "\'s " + self.seed_type 
 
