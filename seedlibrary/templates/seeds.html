@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% block title %}Seed bank: {{ user.username}}'s Seeds{% endblock %}
 {% block pagetitle %}{{ user.username}}'s Seeds{% endblock %}
 {% block content %}
 <p>You have listed {{ seed_list.count }} seed{{ seed_list.count|pluralize }}.</p>

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% block title %}Seed bank: Member Profile{% endblock %}
 {% block pagetitle %}{{ user.username }} Member Profile{% endblock %}
 {% block content %}
     {% if user.is_authenticated %}

@@ -1,5 +1,6 @@
 {% extends "base.html" %}
-
+{% block title %}Seed bank: Logout{% endblock %}
+{% block pagetitle %}Logout{% endblock %}
 {% block content %}
 {% if user.is_authenticated %}
     {{ user.username }}
