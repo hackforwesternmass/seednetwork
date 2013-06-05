@@ -8,7 +8,7 @@
         <tr><th>First name:</th><td>{{ memberinfo.user.first_name }}</td></tr>
         <tr><th>Last name:</th><td>{{ memberinfo.user.last_name }}</td></tr>
             {% if memberinfo.email_is_public %}
-                <tr><th>e-mail:</th><td>{{ memberinfo.user.email }}</td></tr>
+                <tr><th>e-mail:</th><td><a href="mailto:{{ memberinfo.user.email }}">{{ memberinfo.user.email }}</a></td></tr>
             {% endif %}
             {% if memberinfo.phone_is_public %}
                 <tr><th>Phone:</th><td>{{ memberinfo.phone }}</td></tr>
