@@ -2,35 +2,18 @@
 {% block title %}Seed bank: {{ user.username}}'s Seeds{% endblock %}
 {% block pagetitle %}{{ user.username}}'s Seeds{% endblock %}
 {% block content %}
+<p><a href="{% url 'seedlibrary.views.seed_create' %}">List another seed</a></p>
+    <h2>Active</h2>
 <p>You have listed {{ seed_list.count }} seed{{ seed_list.count|pluralize }}.</p>
-
-<p><a href="{% url 'seedlibrary.views.seed_create' %}">Add a new seed</a></p>
 {% if seed_list %}
-    <table class="results">
-    <tr>
-        <th>Type</th>
-        <th>Crop</th>
-        <th>Variety</th>
-        <th>Year</th>
-        <th>Origin</th>
-        <th>Share</th>
-        <th>Description</th>
-        <th>Actions</th></tr>
-    {% for seed in seed_list %}
-        <tr>
-
-        <td>{{ seed.seed_type }}</td>
-        <td>{{ seed.crop_type }}</td>
-        <td>{{ seed.seed_variety }}</td>
-        <td>{{ seed.year }}</td>
-        <td>{{ seed.origin }}</td>
-        <td>{{ seed.enough_to_share|yesno:"Yes,No" }}</td>
-		<td>{{ seed.seed_description }} </td>
-        <td><a href="{% url 'seedlibrary.views.seed_edit' id=seed.id %}">Edit</a></td>
-        </tr>
-    {% endfor %}
-    </table>
-{% else %}
-    
+    {% with seed_list as seed_list_for_table %}
+    {% include 'inc-seed-table.html' %}
+    {% endwith %}
+{% endif %}
+{% if seed_archive_list %}
+    <h2>Archive</h2>
+    {% with seed_archive_list as seed_list_for_table %}
+        {% include 'inc-seed-table.html' %}
+    {% endwith %}
 {% endif %}
 {% endblock %}

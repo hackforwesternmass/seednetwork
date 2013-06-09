@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Seed Bank: Confirm seed {% if seed.archived %}un{% endif %}archive{% endblock %}
+{% block pagetitle %}{% if seed.archived %}Unarchive{% else %}Archive{% endif %} this seed?{% endblock %}
+{% block content %}
+    <p><form method="post" action="{% url 'seedlibrary.views.seed_confirm_archive' id=seed.id %}">
+        {% csrf_token %}
+        Are you sure you want to {% if seed.archived %}un{% endif %}archive this seed?
+    </p>
+    <table class="form">
+        <tr><th>Type:</th><td>{{ seed.seed_type }}</td></tr>
+        <tr><th>Crop:</th><td>{{ seed.crop_type }}</td></tr>
+        <tr><th>Variety:</th><td>{{ seed.seed_variety }}</td></tr>
+    </table>
+    <p><br/><a href="{% url 'seedlibrary.views.seeds' %}">Cancel</a> |
+        {% if seed.archived %}
+            <input type="hidden" name="command" value="unarchive">
+            <input type="submit" value="Unarchive" />
+        {% else %}
+            <input type="submit" value="Archive" />
+            <input type="hidden" name="command" value="archive">
+        {% endif %}
+    </p>
+    </form>
+{%endblock%}

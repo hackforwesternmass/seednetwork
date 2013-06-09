@@ -40,17 +40,18 @@ def seed_create(request):
 
 @login_required
 def seed_create_confirm(request):
-    return render_to_response('seed-confirm.html',
+	return render_to_response('seed-confirm.html',
 		{},
 		context_instance=RequestContext(request))
 
         
 @login_required
 def seeds(request):  
-	seeds_list = Seed.objects.filter(user=request.user)
+	seed_list = Seed.objects.filter(user=request.user, archived=False)
+	seed_archive_list = Seed.objects.filter(user=request.user, archived=True)
 
 	return render_to_response('seeds.html',
-		{ "seed_list": seeds_list },
+		{ "seed_list": seed_list, "seed_archive_list": seed_archive_list },
 		context_instance=RequestContext(request))
 
 def fill_seed_from_form(seed, form):
@@ -89,6 +90,21 @@ def seed_edit(request, id):
 		{ "seed":seed, "form": form, "error": error },
         context_instance=RequestContext(request))
 
+@login_required
+def seed_confirm_archive(request, id):
+	seed = get_object_or_404(Seed, pk=id, user=request.user)
+	error = None
 
-	
-	
+	if request.method == 'POST':
+		if request.POST['command'] == 'archive' and not seed.archived:
+			seed.archived = True
+			seed.save()
+		elif request.POST['command'] == 'unarchive' and seed.archived:
+			seed.archived = False
+			seed.save()
+
+		return redirect('seedlibrary.views.seeds')
+
+	return render_to_response('seed-confirm-archive.html',
+			{ "seed":seed, "error": error },
+			context_instance=RequestContext(request))

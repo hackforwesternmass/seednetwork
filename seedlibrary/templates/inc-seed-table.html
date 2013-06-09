@@ -1,0 +1,29 @@
+<table class="results">
+    <tr>
+        <th>Type</th>
+        <th>Crop</th>
+        <th>Variety</th>
+        <th>Year</th>
+        <th>Origin</th>
+        <th>Share</th>
+        <th>Description</th>
+        <th>Actions</th></tr>
+    {% for seed in seed_list_for_table %}
+        <tr>
+            <td>{{ seed.seed_type }}</td>
+            <td>{{ seed.crop_type }}</td>
+            <td>{{ seed.seed_variety }}</td>
+            <td>{{ seed.year }}</td>
+            <td>{{ seed.origin }}</td>
+            <td>{{ seed.enough_to_share|yesno:"Yes,No" }}</td>
+            <td>{{ seed.seed_description }} </td>
+            <td><a href="{% url 'seedlibrary.views.seed_edit' id=seed.id %}">Edit</a>
+                {% if seed.archived %}
+                    | <a href="{% url 'seedlibrary.views.seed_confirm_archive' id=seed.id %}">Unarchive</a>
+                {% else %}
+                    | <a href="{% url 'seedlibrary.views.seed_confirm_archive' id=seed.id %}">Archive</a>
+                {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+</table>
