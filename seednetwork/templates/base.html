@@ -12,35 +12,42 @@
     <body>
     <table width="1000" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
         <tr>
-            <td width="1000" height="99" valign="top">
+		<td height="20"></td>
+		</tr>
+		<tr>
+            <td width="940" height="198" valign="top" align="center">
                 <a href="/">
-                    <img src={% static "images/header.jpg" %} alt="Hilltown Seed Saving Network Virtual Seed Bank" width="1000" height="140" /></td>
+                    <img src={% static "images/header.jpg" %} align="center" alt="Hilltown Seed Saving Network Virtual Seed Bank" width="940" height="198" /></td>
             </a>
 
             </td>
         </tr>
         <tr>
-            <td class="nav" height="25">
+            <td class="nav" width="940" height="27">
                
                 {% if user.is_authenticated %}
 				 <a href="{% url 'seednetwork.views.home' %}">Seed Bank</a>
-                    | <a href="{% url 'seednetwork.views_user.members' %}">Members</a>
-                    | <a href="{% url 'seednetwork.views_user.profile' %}">My profile</a>
-                    | <a href="{% url 'seedlibrary.views.seeds' %}">My seeds</a>
-                    | <a href="{% url 'django.contrib.auth.views.logout' %}">Log out</a>
+                     <a href="{% url 'seednetwork.views_user.members' %}">Members</a>
+                     <a href="{% url 'seednetwork.views_user.profile' %}">My profile</a>
+                     <a href="{% url 'seedlibrary.views.seeds' %}">My seeds</a>
+                     <a href="{% url 'django.contrib.auth.views.logout' %}">Log out</a>
                     {% if user.is_staff %}
-                        | <a href="/admin">Admin Panel</a>
+                         <a href="/admin">Admin Panel</a> 
                     {% endif %}
+				|
                 {% endif %}
+				 <a href="http://hilltownseeds.wordpress.com/">Back to HSSN Site</a>
             </td>
+			
         </tr>
         <tr>
-            <td height="43" valign="top"><div align="center">
+            <td height="43" valign="top"><div align="center"> &nbsp;
                 <h2><span class="pagetitle">{% block pagetitle%}{% endblock %}</span></h2>
             </div></td>
         </tr>
         <tr>
-            <td height="312" valign="top"><table width="100%" border="0" cellpadding="10" cellspacing="0">
+            <td height="312" valign="top">
+			<table width="100%" border="0" cellpadding="30" cellspacing="0">
                 <tr>
                     <td width="980" height="312" valign="top">
                     {% block content %}
