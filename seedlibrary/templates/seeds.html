@@ -6,13 +6,13 @@
     <h2>Active</h2>
 <p>You have listed {{ seed_list.count }} seed{{ seed_list.count|pluralize }}.</p>
 {% if seed_list %}
-    {% with seed_list as seed_list_for_table %}
+    {% with seed_list_for_table=seed_list full=False %}
     {% include 'inc-seed-table.html' %}
     {% endwith %}
 {% endif %}
 {% if seed_archive_list %}
     <h2>Archive</h2>
-    {% with seed_archive_list as seed_list_for_table %}
+    {% with seed_list_for_table=seed_archive_list full=False %}
         {% include 'inc-seed-table.html' %}
     {% endwith %}
 {% endif %}
