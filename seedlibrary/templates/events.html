@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Seed bank: Events{% endblock %}
+{% block pagetitle %}Events{% endblock %}
+{% block content %}
+    {% if event_list %}
+        {% for event in event_list %}
+            <ul>
+            <li><a href="{% url 'seedlibrary.views.seeds_at_event' id=event.id %}">{{ event.name }}</a> on {{ event.date|date }}</li>
+            </ul>
+        {% endfor %}
+    {% else %}
+        There are no events
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Seeds at {{ event.name }}{% endblock %}
+{% block pagetitle %}Seeds at {{ event.name }}{% endblock %}
+{% block content %}
+    {% if seed_list %}
+        <table class="results">
+            <tr><th>Type</th>
+                <th>Crop</th>
+                <th>Variety</th>
+                <th>Year</th>
+                <th>Origin</th>
+                <th>Share</th>
+                <th>Description</th>
+                <th>Member</th>
+                <th>Town</th>
+                <th>Actions</th></tr>
+            {% for seed in seed_list %}
+                <tr>
+                    <td>{{ seed.seed_type }}</td>
+                    <td>{{ seed.crop_type }}</td>
+                    <td>{{ seed.seed_variety }}</td>
+                    <td>{{ seed.year }}</td>
+                    <td>{{ seed.origin }}</td>
+                    <td>{{ seed.enough_to_share|yesno:"Yes,No" }}</td>
+                    <td>{{ seed.seed_description }} </td>
+                    {% with seed.user.memberinfo_set.all|first as mi %}
+                        <td>
+                            {% if mi.include_in_member_profiles %}
+                                <a href="{% url 'seednetwork.views_user.member' mid=mi.id %}">{{ seed.user.username }}</a>
+                            {% else %}
+                                {{ seed.user.username }}
+                            {% endif %}
+                        </td>
+                        <td>{{ mi.town }}</td>
+                    {% endwith %}
+                    <td>
+                        {% ifequal seed.user.username user.username %}
+                            <a href="{% url 'seedlibrary.views.seed_edit' id=seed.id %}">Edit</a>
+                        {% endifequal %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+{% endblock %}
