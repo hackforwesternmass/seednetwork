@@ -19,3 +19,25 @@ class Seed(models.Model):
 
      def __str__(self):
          return self.user.username + "\'s " + self.seed_type 
+
+
+class Event(models.Model):
+	name = models.CharField(max_length=150, blank=True)
+	date = models.DateField()
+	show_on_seed_edit = models.BooleanField(default=True)
+
+	def __unicode__(self):
+		return self.name
+
+	def __str__(self):
+		return self.name
+
+class SeedAtEvent(models.Model):
+	seed = models.ForeignKey(Seed)
+	event = models.ForeignKey(Event)
+
+	def __unicode__(self):
+		return self.seed.seed_type + " at " + self.event.name
+
+	def __str__(self):
+		return self.seed.seed_type + " at " + self.event.name

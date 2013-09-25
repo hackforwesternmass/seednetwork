@@ -4,7 +4,7 @@ from django.template.context import RequestContext
 from django.contrib.auth.decorators import login_required
 
 from seedlibrary.forms import SeedForm
-from seedlibrary.models import Seed
+from seedlibrary.models import Seed, Event, SeedAtEvent
 
 
 def home(request):
@@ -108,3 +108,24 @@ def seed_confirm_archive(request, id):
 	return render_to_response('seed-confirm-archive.html',
 			{ "seed":seed, "error": error },
 			context_instance=RequestContext(request))
+
+@login_required
+def events(request):
+	event_list = Event.objects.all()
+
+	return render_to_response('events.html',
+			{ "event_list": event_list,},
+            context_instance=RequestContext(request))
+
+@login_required
+def seeds_at_event(request, id):
+	event = get_object_or_404(Event, pk=id)
+
+	seedAtEvent_list = SeedAtEvent.objects.filter(event=event)
+	seed_list = []
+	for seedAtEvent in seedAtEvent_list:
+		seed_list.append(seedAtEvent.seed)
+
+	return render_to_response('seeds-at-event.html',
+			{ "seed_list": seed_list, "event": event },
+			                  context_instance=RequestContext(request))
