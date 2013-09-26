@@ -25,7 +25,7 @@ class Event(models.Model):
 	name = models.CharField(max_length=150, blank=True)
 	date = models.DateField()
 	show_on_seed_edit = models.BooleanField(default=True)
-	seed = models.ManyToManyField(Seed)
+	seed = models.ManyToManyField(Seed, blank=True, null=True)
 
 	def __unicode__(self):
 		return self.name
