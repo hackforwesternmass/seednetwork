@@ -1,5 +1,6 @@
 from django import forms
 from seednetwork.forms import SeedNetworkBaseForm
+from seedlibrary.models import Event
 
 class SeedForm(SeedNetworkBaseForm):
 	seed_type = forms.CharField(max_length=150, required=False, help_text="i.e. vegetable, herb, perennial, fruit bush, fruit tree, etc.")
@@ -9,4 +10,4 @@ class SeedForm(SeedNetworkBaseForm):
 	enough_to_share = forms.BooleanField(required=False, help_text="Do you have enough to share?")
 	year = forms.CharField(max_length=150, required=False)
 	origin = forms.CharField(max_length=150, required=False, help_text="Where did you first obtain the seed?")
-
+	events = forms.ModelMultipleChoiceField(Event.objects.filter(show_on_seed_edit=True), required=False, widget=forms.CheckboxSelectMultiple, help_text="What events will you bring the seed to?")

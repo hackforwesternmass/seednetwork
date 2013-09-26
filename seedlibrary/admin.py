@@ -1,5 +1,5 @@
 from django.contrib import admin
-from seedlibrary.models import Seed, Event, SeedAtEvent
+from seedlibrary.models import Seed, Event
 
 class SeedAdmin(admin.ModelAdmin):
     list_display = ('user', 'name', 'email', 
@@ -14,4 +14,3 @@ class SeedAdmin(admin.ModelAdmin):
     
 admin.site.register(Seed,SeedAdmin)
 admin.site.register(Event)
-admin.site.register(SeedAtEvent)

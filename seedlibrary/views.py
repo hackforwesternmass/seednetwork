@@ -4,7 +4,7 @@ from django.template.context import RequestContext
 from django.contrib.auth.decorators import login_required
 
 from seedlibrary.forms import SeedForm
-from seedlibrary.models import Seed, Event, SeedAtEvent
+from seedlibrary.models import Seed, Event
 
 
 def home(request):
@@ -12,23 +12,35 @@ def home(request):
 		{},
 		context_instance=RequestContext(request))
 
+def update_seed_events(seed, all_checked_events):
+	all_events = Event.objects.filter(show_on_seed_edit=True)
+	for e in all_events:
+		if e in all_checked_events:
+			e.seed.add(seed)
+		else:
+			e.seed.remove(seed)
+
 @login_required
 def seed_create(request):
 	seed_form = SeedForm()  
 	if request.method == 'POST':
 		seed_form = SeedForm(request.POST)
 		if seed_form.is_valid():
+
 			seed = Seed.objects.create(
-                                user = request.user,
+				user = request.user,
 				seed_type = seed_form.cleaned_data['seed_type'],
 				crop_type = seed_form.cleaned_data['crop_type'],
 				seed_variety = seed_form.cleaned_data['seed_variety'],
-                                seed_description = seed_form.cleaned_data['seed_description'],
+				seed_description = seed_form.cleaned_data['seed_description'],
 				enough_to_share = seed_form.cleaned_data['enough_to_share'],
-                                year = seed_form.cleaned_data['year'],
-                                origin = seed_form.cleaned_data['origin']
-				)
+				year = seed_form.cleaned_data['year'],
+				origin = seed_form.cleaned_data['origin']
+			)
 			seed.save()
+
+			update_seed_events(seed, seed_form.cleaned_data['events'])
+
 			return redirect('seedlibrary.views.seed_create_confirm')
 		
 
@@ -73,6 +85,9 @@ def seed_edit(request, id):
 		if form.is_valid():
 			fill_seed_from_form(seed, form)
 			seed.save()
+
+			update_seed_events(seed, form.cleaned_data['events'])
+
 			return redirect('seedlibrary.views.seeds')
 	else:
 		data = {}
@@ -83,6 +98,10 @@ def seed_edit(request, id):
 		data['enough_to_share'] = seed.enough_to_share
 		data['year'] = seed.year
 		data['origin'] = seed.origin
+		e_ids = []
+		for e in seed.event_set.all():
+			e_ids.append(e.id)
+		data['events'] = e_ids
 
 		form = SeedForm(data)
 
@@ -121,10 +140,7 @@ def events(request):
 def seeds_at_event(request, id):
 	event = get_object_or_404(Event, pk=id)
 
-	seedAtEvent_list = SeedAtEvent.objects.filter(event=event)
-	seed_list = []
-	for seedAtEvent in seedAtEvent_list:
-		seed_list.append(seedAtEvent.seed)
+	seed_list = event.seed.all()
 
 	return render_to_response('seeds-at-event.html',
 			{ "seed_list": seed_list, "event": event },

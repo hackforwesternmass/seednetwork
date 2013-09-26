@@ -33,11 +33,20 @@ form th,td {
 
 form th {
     text-align: right;
-
 }
 
 table.form th {
     text-align: right;
+}
+
+form table tr > td {
+    padding-bottom: 20px;
+}
+
+form table td ul {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
 }
 
 .sectionheader {
