@@ -6,6 +6,8 @@ from django.contrib.auth.decorators import login_required
 from seedlibrary.forms import SeedForm
 from seedlibrary.models import Seed, Event
 
+from datetime import datetime, timedelta
+
 
 def home(request):
 	return render_to_response('seedlib-home.html',
@@ -130,10 +132,12 @@ def seed_confirm_archive(request, id):
 
 @login_required
 def events(request):
-	event_list = Event.objects.all()
+	yesterday = datetime.now() - timedelta(days=1)
+	event_list = Event.objects.filter(date__gte=yesterday).order_by('date')
+	past_event_list = Event.objects.filter(date__lt=yesterday).order_by('-date')
 
 	return render_to_response('events.html',
-			{ "event_list": event_list,},
+			{ "event_list": event_list, "past_event_list":past_event_list},
             context_instance=RequestContext(request))
 
 @login_required

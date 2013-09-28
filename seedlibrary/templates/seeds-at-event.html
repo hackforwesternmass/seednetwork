@@ -2,9 +2,13 @@
 {% block title %}Seeds at {{ event.name }}{% endblock %}
 {% block pagetitle %}Seeds at {{ event.name }}{% endblock %}
 {% block content %}
+    <p>Date: {{ event.date }}</p>
+    <p>{{ event.description }}</p>
     {% if seed_list %}
         {% with seed_list_for_table=seed_list full=True %}
             {% include 'inc-seed-table.html' %}
         {% endwith %}
+    {% else %}
+    <p>No seeds at this event.</p>
     {% endif %}
 {% endblock %}
