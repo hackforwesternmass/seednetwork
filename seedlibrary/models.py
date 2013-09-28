@@ -7,7 +7,7 @@ class Seed(models.Model):
      seed_type = models.CharField(max_length=150, blank=True)
      crop_type = models.CharField(max_length=150, blank=True)
      seed_variety = models.CharField(max_length=150, blank=True)
-     seed_description =models.TextField(blank=True)
+     seed_description = models.TextField(blank=True)
      enough_to_share = models.BooleanField(default=False)
      year = models.CharField(max_length=150, blank=True)
      origin = models.CharField(max_length=150, blank=True)
@@ -26,6 +26,7 @@ class Event(models.Model):
 	date = models.DateField()
 	show_on_seed_edit = models.BooleanField(default=True)
 	seed = models.ManyToManyField(Seed, blank=True, null=True)
+	description = models.TextField(blank=True)
 
 	def __unicode__(self):
 		return self.name
