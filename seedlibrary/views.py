@@ -3,11 +3,14 @@ from django.shortcuts import render_to_response, redirect, get_object_or_404
 from django.template.context import RequestContext
 from django.contrib.auth.decorators import login_required
 
-from seedlibrary.forms import SeedForm
+from seedlibrary.forms import SeedForm, SeedExportForm
 from seedlibrary.models import Seed, Event
 
 from datetime import datetime, timedelta
 
+# For rendering seed lists in CSV format
+import csv
+from django.http import HttpResponse
 
 def home(request):
 	return render_to_response('seedlib-home.html',
@@ -76,6 +79,65 @@ def fill_seed_from_form(seed, form):
 	seed.enough_to_share = form.cleaned_data['enough_to_share']
 	seed.year = form.cleaned_data['year']
 	seed.origin = form.cleaned_data['origin']
+
+@login_required
+def seed_export(request):
+	seed_export_form = SeedExportForm()
+	if request.method == 'POST':
+		seed_export_form = SeedExportForm(request.POST)
+		if seed_export_form.is_valid():
+			try:
+				request.POST['archive']
+			except:
+				include_archived = False
+			else:
+				include_archived = True
+			seed_list = Seed.objects.filter(user=request.user, archived=include_archived)
+			return seeds_as_csv_to_response(seed_list)
+
+	return render_to_response('seed-export.html',
+			{"seed_export_form":seed_export_form},
+			context_instance=RequestContext(request))
+
+def seeds_as_csv_to_response(seed_list):
+	response = HttpResponse(content_type='text/csv')
+	response['Content-Disposition'] = 'attachment; filename="Seeds.csv"'
+	writer = csv.writer(response)
+	# Write header row.
+	writer.writerow([
+		'Title',
+		'Type',
+		'Quantity',
+		'Common Name',
+		'Unit label',
+		'Seed Expiration Date',
+		'Exchange Expiration Date',
+		'Notes',
+		'Scientific Name'
+		])
+	for seed in seed_list:
+		title = ' '.join(seed.seed_description.split(' ')[:10])
+		type = 'Give' if seed.enough_to_share else 'Get'
+		quantity = ''
+		common_name = seed.crop_type
+		unit = 'Packets'
+		seed_expiry_date = ''
+		exchange_expiry_date = datetime.now() + timedelta(days=365)
+		notes = seed.seed_description
+		scientific_name = seed.seed_variety
+		writer.writerow([
+			title,
+			type,
+			quantity,
+			common_name,
+			unit,
+			seed_expiry_date,
+			exchange_expiry_date.isoformat(),
+			notes,
+			scientific_name
+			])
+
+	return response
 
 @login_required
 def seed_edit(request, id):

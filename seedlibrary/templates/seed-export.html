@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Seed Bank: Export Seeds {% endblock %}
+{% block pagetitle %}Export Seeds{% endblock %}
+
+{% block content %}
+
+        <h3>Export your seeds</h3>
+        <form action="." method="post">{% csrf_token %}
+            <table>
+                {{  seed_export_form.as_table }}
+            </table>
+            <input type="submit"  value="Export Seeds" />
+
+        </form>
+
+{%endblock%}

@@ -2,7 +2,11 @@
 {% block title %}Seed bank: {{ user.username}}'s Seeds{% endblock %}
 {% block pagetitle %}{{ user.username}}'s Seeds{% endblock %}
 {% block content %}
-<p><a href="{% url 'seedlibrary.views.seed_create' %}">List another seed</a></p>
+<p>
+    <a href="{% url 'seedlibrary.views.seed_create' %}">List another seed</a>
+    |
+    <a href="{% url 'seedlibrary.views.seed_export' %}">Export my seeds</a>
+</p>
     <h2>Active</h2>
 <p>You have listed {{ seed_list.count }} seed{{ seed_list.count|pluralize }}.</p>
 {% if seed_list %}
