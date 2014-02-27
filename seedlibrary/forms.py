@@ -11,3 +11,6 @@ class SeedForm(SeedNetworkBaseForm):
 	year = forms.CharField(max_length=150, required=False)
 	origin = forms.CharField(max_length=150, required=False, help_text="Where did you first obtain the seed?")
 	events = forms.ModelMultipleChoiceField(Event.objects.filter(show_on_seed_edit=True), required=False, widget=forms.CheckboxSelectMultiple, help_text="What events will you bring the seed to?")
+
+class SeedExportForm(SeedNetworkBaseForm):
+	archive = forms.BooleanField(required=False, help_text="Do you want to export your archived seed listings?")
